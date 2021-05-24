@@ -1,1 +1,1 @@
-# python3
+python 스터디
