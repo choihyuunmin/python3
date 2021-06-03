@@ -11,10 +11,38 @@ def coroutine1():
 # declare generator
 c1 = coroutine1()
 
-print(c1, type(c1))
+# print(c1, type(c1))
 
-next(c1)
 # next(c1)
+# c1.send(100)
 
 
-c1.send(100)
+# Decorator pattern
+
+from functools import wraps
+
+def coroutine(func):
+    '''Decorator run until yield'''
+    @wraps(func)
+    def primer(*args, **kwargs):
+        gen = func(*args, **kwargs)
+        next(gen)
+        return gen
+    return primer
+
+
+@coroutine
+def sumer():
+    total = 0
+    term = 0
+    while True:
+        term = yield total
+        total += term
+        
+        
+        
+tst = sumer()
+
+print(tst.send(100))
+print(tst.send(200))
+print(tst.send(300))
