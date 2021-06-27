@@ -1,2 +1,2 @@
-python3  stdy
+python3  study
  
